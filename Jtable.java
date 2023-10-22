@@ -1,38 +1,45 @@
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class Jtable {
 
-    private JButton button1;
-    private JPanel panel1;
+    JPanel panel1;
     private JTable table1;
+    private JPanel Jpanel2;
+    private JButton addIItemButton;
+    private JButton editItemButton;
+    private JButton deleteItemButton;
+    public Library lib1;
 
     Jtable()
     {
+      lib1=new Library();
         panel1.setSize(400,400);
-        String[][] data = {
-                { "Java Tutorials ", "John", "2010",null },
-                { "C++ Tutorials", "Albert ", "2012",null },
-                {"Python Tutorials","Albert","2015",null}
-        };
+        String[][] data =lib1.loadFromFile();
 
         // Column Names
-        String[] columnNames = { "Title", "Author", "Publication Year","Read Item" };
+        String[] columnNames = { "Title", "Author", "Publication Year" };
         table1 = new JTable(data, columnNames);
         table1.setBounds(30, 40, 200, 300);
 
         // adding it to JScrollPane
         JScrollPane sp = new JScrollPane(table1);
         panel1.add(sp);
+
+
+        addIItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lib1.additem();
+            }
+        });
     }
-    public static void main(String[] args)
-    {
-        JFrame f=new JFrame("idk");
-        f.setSize(400,400);
-        f.setContentPane(new Jtable().panel1);
-        f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f.setVisible(true);
-        f.pack();
-    }
+
+
 
 }

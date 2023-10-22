@@ -1,0 +1,3 @@
+book_title, author_name,1950
+magazine_title, author1_name,2001
+newspaper_title,publisher_company,2002

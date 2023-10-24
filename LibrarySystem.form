@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="LibrarySystem">
+  <grid id="27dc6" binding="card" layout-manager="CardLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="5a50d" binding="p1" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <card name="Card1"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="9eb0b" class="javax.swing.JTable" binding="table1" default-binding="true">
+            <constraints border-constraint="Center"/>
+            <properties/>
+          </component>
+          <grid id="21d20" binding="buttonPane" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
+            <constraints border-constraint="South"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="26f56" class="javax.swing.JButton" binding="addButton">
+                <constraints/>
+                <properties>
+                  <text value="Add Item "/>
+                </properties>
+              </component>
+              <component id="24971" class="javax.swing.JButton" binding="deleteItemButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Delete Item"/>
+                </properties>
+              </component>
+              <component id="aa0eb" class="javax.swing.JButton" binding="edItItemButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value=" EdIt Item"/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+          <component id="ccf0a" class="javax.swing.JLabel" binding="label1">
+            <constraints border-constraint="North"/>
+            <properties>
+              <font name="Baskerville Old Face" size="22" style="1"/>
+              <text value="WELCOME TO LIBRARY !"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="7cdd9" binding="p2" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints>
+          <card name="Card2"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="8f59d" class="javax.swing.JLabel" binding="label2">
+            <constraints border-constraint="North"/>
+            <properties>
+              <text value=" Add Information :"/>
+            </properties>
+          </component>
+          <grid id="d17" binding="textPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+            <constraints border-constraint="South"/>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="4a922" class="javax.swing.JTextField" binding="enterBookNameTextField" default-binding="true">
+                <constraints border-constraint="North"/>
+                <properties>
+                  <columns value="1"/>
+                  <text value="Enter book name "/>
+                </properties>
+              </component>
+              <component id="239bb" class="javax.swing.JTextField" binding="enterPublishingYearTextField" default-binding="true">
+                <constraints border-constraint="Center"/>
+                <properties>
+                  <text value="Enter Publishing year "/>
+                </properties>
+              </component>
+              <component id="1dc34" class="javax.swing.JTextField" binding="enterAuthorNameTextField" default-binding="true">
+                <constraints border-constraint="South"/>
+                <properties>
+                  <text value="Enter Author name "/>
+                </properties>
+              </component>
+            </children>
+          </grid>
+        </children>
+      </grid>
+      <grid id="6557f" binding="p3" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <card name="Card3"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+    </children>
+  </grid>
+</form>

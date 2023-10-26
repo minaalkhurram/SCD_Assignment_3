@@ -39,6 +39,18 @@
                   <text value=" EdIt Item"/>
                 </properties>
               </component>
+              <component id="813db" class="javax.swing.JButton" binding="readButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="Read"/>
+                </properties>
+              </component>
+              <component id="3cdad" class="javax.swing.JButton" binding="VIewPopularityButton" default-binding="true">
+                <constraints/>
+                <properties>
+                  <text value="VIew Popularity"/>
+                </properties>
+              </component>
             </children>
           </grid>
           <component id="ccf0a" class="javax.swing.JLabel" binding="label1">

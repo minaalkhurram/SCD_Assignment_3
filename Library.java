@@ -1,6 +1,6 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Library {
@@ -11,100 +11,36 @@ public class Library {
 
     public String[][] loadFromFile(){
         try {
-            File myObj = new File("libinput.txt");
-            Scanner myReader = new Scanner(myObj);
+            String fileName = "libinput.txt"; // Make sure the file name is correct
+            List<String[]> lines = new ArrayList<>();
 
-            String[][] Sdata=new String[3][3];
-            int i=0;
-            while (myReader.hasNextLine()) {
-                String data = myReader.nextLine();
-                String[] parts=data.split(",");
-                for(int j=0;j<3;j++)
-                {
-                    Sdata[i][j]=parts[j];
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] parts = line.split(",");
+                    if (parts.length == 4) {
+                        lines.add(parts);
+                    } else {
+                        // Handle lines with incorrect format, log or skip them
+                    }
                 }
-                i++;
-
-
-                    Item nn=new book(parts[0],parts[1],Integer.parseInt(parts[2]),0,0);
-                    ItemList.add(nn);
             }
-            myReader.close();
+
+            int noOfLines = lines.size();
+            String[][] Sdata = lines.toArray(new String[noOfLines][4]);
             return Sdata;
+
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-    return null;}
+        return null;}
+    public void additem(String title,String author,int year){
 
-    public void displayMenu(){
-        Scanner myobj=new Scanner(System.in);
-        int choice=-1;
-        while(choice!=0){
-            System.out.println("\n LIBRARY MANAGEMNT SYSTEM MENU :\n1. Hot picks ! \n2. Borrow an item\n3. Add Item");
-            System.out.println("4. Edit Item\n5. Delete item \n6. View all items\n7. View item by id \n8. view borrowers list\n9. return item \n 0. Exit \n Enter Choice: ");
-            choice=myobj.nextInt();
-            if(choice==1)
-            {
-                hotpics();
-
-            }
-            else if(choice==2)
-            {
-
-            }
-            else if(choice==3)
-            {
-                additem();
-
-            }
-            else if(choice==4)
-            {
-                editItem();
-                //  choice=0;
-            }
-            else if(choice==5)
-            {
-                deleteitem();
-                //  choice=0;
-            }
-            else if(choice==6)
-            {
-                viewAll();
-                // choice=0;
-            }
-            else if(choice==7)
-            {
-                viewById();
-                // choice=0;
-            }
-            else if(choice>9||choice<0)
-            {
-                System.out.println("INVALID RENTER");
-                choice=0;
-            }
-        }}
-
-    public void additem(){
-        Scanner myobj=new Scanner(System.in);
-
-            Scanner myobj1=new Scanner(System.in);
-            System.out.print("\n Enter book title : ");
-            String title=myobj1.nextLine();
-            System.out.print("\n Enter Author name : ");
-            String author=myobj1.nextLine();
-            System.out.print("\nEnter publishing year : ");
-            int year=myobj.nextInt();
-            System.out.print("\nEnter popularity count : ");
-            int popc=myobj.nextInt();
-            System.out.print("\nEnter Cost : ");
-            int c=myobj.nextInt();
-            Item nn=new book(title,author,year,popc,c);
+            Item nn=new book(title,author,year,0);
             ItemList.add(nn);
-
-
-
-
         }
 
     public void editItem(){

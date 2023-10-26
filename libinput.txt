@@ -1,3 +1,6 @@
-book_title, author_name,1950
-magazine_title, author1_name,2001
-newspaper_title,publisher_company,2002
+book_title, author_name,1950,0
+magazine_title, author1_name,2001,0
+newspaper_title,publisher_company,2002,0
+harry,JK_ROWLING,2003,0
+Biography,Minaal,2003,0
+Hunger Games,Susan Collins,1978,0

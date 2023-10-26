@@ -3,9 +3,9 @@ public class book extends Item implements configuration{
     public String author;
     public int year;
 
-    public book(String t, String a,int y,int popCount,int c)
+    public book(String t, String a,int y,int c)
     {
-        super(t,popCount,c);
+        super(t,0,c);
 
         nextID++;
         author=a;

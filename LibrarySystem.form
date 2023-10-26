@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="LibrarySystem">
-  <grid id="27dc6" binding="card" layout-manager="CardLayout" hgap="0" vgap="0">
+  <grid id="27dc6" binding="card" layout-manager="BorderLayout" hgap="0" vgap="0">
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
@@ -8,9 +8,7 @@
     <border type="none"/>
     <children>
       <grid id="5a50d" binding="p1" layout-manager="BorderLayout" hgap="0" vgap="0">
-        <constraints>
-          <card name="Card1"/>
-        </constraints>
+        <constraints border-constraint="Center"/>
         <properties/>
         <border type="none"/>
         <children>
@@ -51,56 +49,6 @@
             </properties>
           </component>
         </children>
-      </grid>
-      <grid id="7cdd9" binding="p2" layout-manager="BorderLayout" hgap="0" vgap="0">
-        <constraints>
-          <card name="Card2"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children>
-          <component id="8f59d" class="javax.swing.JLabel" binding="label2">
-            <constraints border-constraint="North"/>
-            <properties>
-              <text value=" Add Information :"/>
-            </properties>
-          </component>
-          <grid id="d17" binding="textPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
-            <constraints border-constraint="South"/>
-            <properties/>
-            <border type="none"/>
-            <children>
-              <component id="4a922" class="javax.swing.JTextField" binding="enterBookNameTextField" default-binding="true">
-                <constraints border-constraint="North"/>
-                <properties>
-                  <columns value="1"/>
-                  <text value="Enter book name "/>
-                </properties>
-              </component>
-              <component id="239bb" class="javax.swing.JTextField" binding="enterPublishingYearTextField" default-binding="true">
-                <constraints border-constraint="Center"/>
-                <properties>
-                  <text value="Enter Publishing year "/>
-                </properties>
-              </component>
-              <component id="1dc34" class="javax.swing.JTextField" binding="enterAuthorNameTextField" default-binding="true">
-                <constraints border-constraint="South"/>
-                <properties>
-                  <text value="Enter Author name "/>
-                </properties>
-              </component>
-            </children>
-          </grid>
-        </children>
-      </grid>
-      <grid id="6557f" binding="p3" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-        <margin top="0" left="0" bottom="0" right="0"/>
-        <constraints>
-          <card name="Card3"/>
-        </constraints>
-        <properties/>
-        <border type="none"/>
-        <children/>
       </grid>
     </children>
   </grid>

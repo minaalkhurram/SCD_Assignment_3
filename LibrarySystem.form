@@ -14,7 +14,9 @@
         <children>
           <component id="9eb0b" class="javax.swing.JTable" binding="table1" default-binding="true">
             <constraints border-constraint="Center"/>
-            <properties/>
+            <properties>
+              <background color="-5794911"/>
+            </properties>
           </component>
           <grid id="21d20" binding="buttonPane" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="1">
             <constraints border-constraint="South"/>
@@ -56,6 +58,7 @@
           <component id="ccf0a" class="javax.swing.JLabel" binding="label1">
             <constraints border-constraint="North"/>
             <properties>
+              <background color="-11262380"/>
               <font name="Baskerville Old Face" size="22" style="1"/>
               <text value="WELCOME TO LIBRARY !"/>
             </properties>

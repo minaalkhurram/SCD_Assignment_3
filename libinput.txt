@@ -1,4 +1,4 @@
 Book2, author_name,1950,4
 magazine_title, author1_name,2001,5
 Harry Potter and the Philosphers Stone,JK_ROWLING,2003,4
-Hunger Games ,Susan Collins,1978,0
+Hunger Games ,Susan Collins,1978,2

@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -40,6 +41,12 @@ public class LibrarySystem {
         frame.setSize(600, 600);
         buttonPane.setBackground(Color.decode("#E6E6FA"));
         p1.setBackground(Color.decode("#E6E6FA"));
+        JTableHeader tableHeader = table1.getTableHeader();
+
+// Set the background color of the header row
+        tableHeader.setBackground(Color.decode("#4B0082"));
+
+        tableHeader.setForeground(Color.white);
         frame.setVisible(true);
         addButton.addActionListener(new ActionListener() {
             @Override
@@ -144,7 +151,7 @@ public class LibrarySystem {
                     int row = table1.rowAtPoint(e.getPoint());
                     if (row >= 0) {
                         table1.setRowSelectionInterval(row, row);
-                        table1.setSelectionBackground(Color.cyan); // You can use any color you prefer
+                        table1.setSelectionBackground(Color.decode("#DA70D6")); // You can use any color you prefer
                     }
                     else
                         table1.clearSelection();
@@ -180,7 +187,7 @@ public class LibrarySystem {
                     int row = table1.rowAtPoint(e.getPoint());
                     if (row >= 0) {
                         table1.setRowSelectionInterval(row, row);
-                        table1.setSelectionBackground(Color.CYAN);
+                        table1.setSelectionBackground(Color.decode("#DA70D6"));
                     } else {
                         table1.clearSelection();
                     }
@@ -202,10 +209,11 @@ public class LibrarySystem {
         String[] columnNames = { "Title", "Author", "Publication Year", "Popularity Count" };
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         table1 = new JTable(model);
-        table1.setBounds(30, 40, 200, 100);
-        p1.setSize(500,500);
+        table1.setBounds(30, 40, 200, 50);
+        p1.setSize(500,300);
         // adding it to JScrollPane
         p1.add(label1, BorderLayout.NORTH);
+        label1.setBackground(Color.decode("#DA70D6"));
         JScrollPane sp = new JScrollPane(table1);
         p1.add(sp, BorderLayout.CENTER);
         p1.add(buttonPane, BorderLayout.SOUTH);

@@ -1,4 +1,4 @@
 Mockingbird,idk,1951,4
 Book Theif , author1_name,2001,6
-Harry Potter and the Philosphers Stone,JK_ROWLING,2003,4
-Hunger Games ,Susan Collins,1978,7
+Harry Potter and the Philosphers Stone,JK_ROWLING,2003,7
+Hunger Games ,Susan Collins,1978,8

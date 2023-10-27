@@ -1,6 +1,4 @@
-Mockingbird, author_name,1950,4
+Mockingbird,idk,1951,4
 Book Theif , author1_name,2001,6
 Harry Potter and the Philosphers Stone,JK_ROWLING,2003,4
 Hunger Games ,Susan Collins,1978,7
-Frankestein,idk,1998,1
-Picture of Dorian,Dorian,2000,0

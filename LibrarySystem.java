@@ -4,7 +4,6 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
 import org.jfree.chart.plot.PiePlot;
 import org.jfree.data.general.DefaultPieDataset;
-
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -89,34 +88,92 @@ public class LibrarySystem {
         });
 
         edItItemButton.addActionListener(new ActionListener() {
-                                             @Override
-                                             public void actionPerformed(ActionEvent e) {
-
-                                                 int selectedRow = table1.getSelectedRow();
-
-                                                 if (selectedRow >= 0) {
-                                                     // Get the current book name
-                                                     String currentBookName = (String) table1.getValueAt(selectedRow, 0);
-
-                                                     // Prompt the user for a new book name
-                                                     String newBookName = JOptionPane.showInputDialog("Enter the new book name:", currentBookName);
-
-                                                     if (newBookName != null) {
-                                                         // Update the JTable with the new book name
-                                                         table1.setValueAt(newBookName, selectedRow, 0);
-
-                                                         // Update the data in the file
-                                                         String[][] data = getDataFromTable(table1);
-                                                         updateDataInFile(data);
-                                                     }
-                                                 }
-                                             }
-                                         }
-        );
-        deleteItemButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int selectedRow = table1.getSelectedRow();
+
+                if (selectedRow >= 0) {
+                    // Get the current book name, author name, and publication year
+                    String currentBookName = (String) table1.getValueAt(selectedRow, 0);
+                    String currentAuthorName = (String) table1.getValueAt(selectedRow, 1);
+                    String nn=(String) table1.getValueAt(selectedRow, 2);
+                    int currentPublicationYear = Integer.parseInt(nn); // Assuming the publication year is in the third column
+
+                    // Create a JPanel to hold input fields
+                    JPanel inputPanel = new JPanel(new GridLayout(4, 2));
+                    JTextField bookNameField = new JTextField(currentBookName, 15);
+                    JTextField authorNameField = new JTextField(currentAuthorName, 15);
+                    JTextField publicationYearField = new JTextField(String.valueOf(currentPublicationYear), 15);
+
+                    inputPanel.add(new JLabel("Book Name:"));
+                    inputPanel.add(bookNameField);
+                    inputPanel.add(new JLabel("Author Name:"));
+                    inputPanel.add(authorNameField);
+                    inputPanel.add(new JLabel("Publication Year:"));
+                    inputPanel.add(publicationYearField);
+
+                    // Show the input dialog
+                    int result = JOptionPane.showConfirmDialog(
+                            null, inputPanel, "Edit Book Information", JOptionPane.OK_CANCEL_OPTION);
+
+                    if (result == JOptionPane.OK_OPTION) {
+                        String newBookName = bookNameField.getText();
+                        String newAuthorName = authorNameField.getText();
+                        int newPublicationYear = Integer.parseInt(publicationYearField.getText());
+
+                        // Update the JTable with the new book name, author name, and publication year
+                        table1.setValueAt(newBookName, selectedRow, 0);
+                        table1.setValueAt(newAuthorName, selectedRow, 1);
+                        table1.setValueAt(Integer.toString(newPublicationYear), selectedRow, 2);
+
+                        // Update the data in the file
+                        String[][] data = getDataFromTable(table1);
+                        updateDataInFile(data);
+                    }
+                }
+            }
+        });
+        deleteItemButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JPanel inputPanel = new JPanel(new GridLayout(3, 2));
+                JTextField bookNameField = new JTextField(15);
+                JTextField authorNameField = new JTextField(15);
+                JTextField pubYear=new JTextField(1);
+                inputPanel.add(new JLabel("Enter Book Name:"));
+                inputPanel.add(bookNameField);
+                inputPanel.add(new JLabel("Enter Author Name:"));
+                inputPanel.add(authorNameField);
+                inputPanel.add(new JLabel("Enter Publication Year:"));
+                inputPanel.add(pubYear);
+
+
+                // Show the input dialog
+                int result = JOptionPane.showConfirmDialog(
+                        null, inputPanel, "Enter Book and Author Names", JOptionPane.OK_CANCEL_OPTION);
+
+                if (result == JOptionPane.OK_OPTION) {
+                    String bookNameToDelete = bookNameField.getText();
+                    String authorNameToDelete = authorNameField.getText();
+                    String yearToDelete=pubYear.getText();
+
+                    if (!bookNameToDelete.isEmpty() && !authorNameToDelete.isEmpty()) {
+                        DefaultTableModel model = (DefaultTableModel) table1.getModel();
+
+                        // Find and remove the row with the provided book name and author name from the JTable
+                        for (int row = 0; row < model.getRowCount(); row++) {
+                            String bookName = (String) model.getValueAt(row, 0); // Assuming the book name is in the first column
+                            String authorName = (String) model.getValueAt(row, 1); // Assuming the author name is in the second column
+                            String year=(String) model.getValueAt(row,2);
+                            if (bookNameToDelete.equalsIgnoreCase(bookName) && authorNameToDelete.equalsIgnoreCase(authorName)&&yearToDelete.equals(year)) {
+                                model.removeRow(row);
+                                break; // Remove the first matching item and exit the loop
+                            }
+                        }
+
+                        // Update the data in the file
+                        String[][] data = getDataFromTable(table1);
+                        updateDataInFile(data);}/* int selectedRow = table1.getSelectedRow();
 
                 if (selectedRow >= 0) {
                     DefaultTableModel model = (DefaultTableModel) table1.getModel();
@@ -126,8 +183,8 @@ public class LibrarySystem {
                     String[][] data = getDataFromTable(table1);
                     updateDataInFile(data);
 
-                }
-        }});
+                }*/
+        }}});
         readButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

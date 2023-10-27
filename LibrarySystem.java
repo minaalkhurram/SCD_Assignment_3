@@ -7,6 +7,14 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import javax.swing.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+
 
 public class LibrarySystem {
 
@@ -195,6 +203,20 @@ public class LibrarySystem {
             }
         });
 
+        VIewPopularityButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame pieFrame=new JFrame("Pie");
+                pieFrame.setSize(300,300);
+                pieFrame.setVisible(true);
+                DefaultPieDataset dataset = new DefaultPieDataset();
+
+                // Populate the dataset with data from your JTable
+                dataset.setValue("Item 1", 50); // Replace with your data
+                dataset.setValue("Item 2", 30); // Replace with your data
+                dataset.setValue("Item 3", 20);
+            }
+        });
     }
     private boolean isMouseEventInsideTable(MouseEvent e) {
         int row = table1.rowAtPoint(e.getPoint());

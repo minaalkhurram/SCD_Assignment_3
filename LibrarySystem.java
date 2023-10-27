@@ -1,19 +1,17 @@
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.data.general.DefaultPieDataset;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
-import javax.swing.*;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.PiePlot;
-import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.general.DefaultPieDataset;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 
 public class LibrarySystem {
@@ -78,7 +76,8 @@ public class LibrarySystem {
                         DefaultTableModel model = (DefaultTableModel) table1.getModel();
                         model.addRow(columnNames);
                         table1.setModel(model);
-                        savetofile(columnNames);
+                        String[][] data = getDataFromTable(table1);
+                        updateDataInFile(data);
                         System.out.println("add successful");
                     } else {
                         System.out.println("failed");
@@ -206,17 +205,38 @@ public class LibrarySystem {
         VIewPopularityButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame pieFrame=new JFrame("Pie");
-                pieFrame.setSize(300,300);
-                pieFrame.setVisible(true);
+                DefaultTableModel model = (DefaultTableModel) table1.getModel();
                 DefaultPieDataset dataset = new DefaultPieDataset();
 
-                // Populate the dataset with data from your JTable
-                dataset.setValue("Item 1", 50); // Replace with your data
-                dataset.setValue("Item 2", 30); // Replace with your data
-                dataset.setValue("Item 3", 20);
+                int rowCount = model.getRowCount();
+                for (int i = 0; i < rowCount; i++) {
+                    String bookTitle = (String) model.getValueAt(i, 0); // Assuming book title is in the first column
+                   String nn= (String) model.getValueAt(i, 3);
+                    int popularityCount = Integer.parseInt(nn); // Assuming popularity count is in the fourth column
+                    dataset.setValue(bookTitle, popularityCount);
+                }
+
+                JFreeChart pieChart = ChartFactory.createPieChart(
+                        "Popularity Chart",
+                        dataset,
+                        true,  // Include legend
+                        true,
+                        false
+                );
+
+                PiePlot plot = (PiePlot) pieChart.getPlot();
+                plot.setLabelGenerator(new StandardPieSectionLabelGenerator("{0}: {1} ({2})"));
+                Font labelFont = new Font("SansSerif", Font.PLAIN, 12);
+                plot.setLabelFont(labelFont);
+                ChartPanel chartPanel = new ChartPanel(pieChart);
+                JFrame frame = new JFrame("Popularity Pie Chart");
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.add(chartPanel);
+                frame.pack();
+                frame.setVisible(true);
             }
         });
+
     }
     private boolean isMouseEventInsideTable(MouseEvent e) {
         int row = table1.rowAtPoint(e.getPoint());
@@ -240,23 +260,7 @@ public class LibrarySystem {
         p1.add(sp, BorderLayout.CENTER);
         p1.add(buttonPane, BorderLayout.SOUTH);
     }
-    void savetofile(String[] s)
-    {
-         String nn;
-         nn='\n'+s[0]+','+s[1]+','+s[2]+','+s[3];
-        File myObj = new File("libinput.txt");
-        try {
-         /*   FileWriter fw = new FileWriter(myObj);
-            fw.append(nn);
-            fw.close();*/
-            Files.write(Paths.get(myObj.toURI()),nn.getBytes(), StandardOpenOption.APPEND);
-
-        }
-        catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
+   ;
 
     private String[][] getDataFromTable(JTable table) {
         int rowCount = table.getRowCount();
@@ -311,4 +315,9 @@ public class LibrarySystem {
         });
 
     }
+    public static void main(String[] args)
+    {
+        LibrarySystem nn=new LibrarySystem();
+    }
+
 }
